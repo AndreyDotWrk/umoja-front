@@ -6,7 +6,8 @@ import { useVendorStore } from '~/stores/vendorStore';
 export const vendorUseApi = (transformResponse) => {
     
     const token = useVendorStore().vendorToken;
-    const baseURL = 'https://umoja-production-9636.up.railway.app/api/';
+    const config = useRuntimeConfig()
+    const baseURL = config.public.backendApiUrl;
 
     const instance = axios.create({
         baseURL,

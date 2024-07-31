@@ -39,6 +39,7 @@ export default defineNuxtConfig({
   },
   runtimeConfig: {
     public: {
+      backendApiUrl: process.env.BACKEND_API_URL,
       stripePK: process.env.NUXT_ENV_STRIPE_PUBLIC_KEY,
       mapboxAccessToken: process.env.MAP_BOX_TOKEN,
       ipInfoToken: process.env.NUXT_ENV_IP_KEY,

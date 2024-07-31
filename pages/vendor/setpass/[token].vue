@@ -87,7 +87,8 @@ import { vendorUseApi } from '~/composables/vendorApi';
 import axios from 'axios'
 
 
-
+    const config = useRuntimeConfig()
+    const baseURL = config.public.backendApiUrl;
     const api = vendorUseApi()
     const router = useRouter();
     const route = useRoute();
@@ -114,7 +115,7 @@ import axios from 'axios'
   async function setPassWord({password, password_confirmation, token}) {
       loading.value = true;
         try {
-        const response = await axios.post(`https://umoja-production-9636.up.railway.app/api/auth/password_setup/${token}`, {
+        const response = await axios.post(baseURL + `/auth/password_setup/${token}`, {
           password,
           password_confirmation
         });

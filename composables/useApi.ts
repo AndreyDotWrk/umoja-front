@@ -4,7 +4,8 @@ import { useUserStore } from '~/stores/userStore';
 
 export const useApi = (transformResponse) => {
     const token = useUserStore().userToken;
-    const baseURL = 'https://umoja-production-9636.up.railway.app/api/';
+    const config = useRuntimeConfig();
+    const baseURL = config.public.backendApiUrl;
 
     const instance = axios.create({
         baseURL,

@@ -3,6 +3,8 @@ import axios from 'axios';
 import { useApi } from '~/composables/useApi';
 import { debounce } from 'lodash';
 
+const config = useRuntimeConfig()
+const baseURL = config.public.backendApiUrl;
 
 export const useProductStore = defineStore('productStore', {
   state: () => ({
@@ -183,7 +185,7 @@ export const useProductStore = defineStore('productStore', {
         this.recentSearches = [];
       },
     async fetchProducts() {
-      const response = await axios.get('https://umoja-production-9636.up.railway.app/api/allproducts');
+      const response = await axios.get(baseURL + '/allproducts');
       this.products.row = response.data.data;
       this.allProducts = response.data.data
     },

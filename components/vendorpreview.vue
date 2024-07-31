@@ -248,7 +248,9 @@ import emojiFlags from "emoji-flags";
 
 export default {
 	setup(props, ctx) {
-		const vendorStore = useVendorStore();
+    const config = useRuntimeConfig()
+    const baseURL = config.public.backendApiUrl;
+    const vendorStore = useVendorStore();
 		const vendor = ref(vendorStore.vendor);
 		const vendorProducts = useVendorProductStore();
 		const router = useRouter();
@@ -290,7 +292,7 @@ async function upLoadFile1(event) {
         const formData = new FormData();
         formData.append('cover_image', compressedFile);
 
-        const res = await axios.post('https://umoja-production-9636.up.railway.app/api/vendor/upload/cover_image', formData, {
+        const res = await axios.post(baseURL + '/vendor/upload/cover_image', formData, {
             headers: {
                 Authorization: `Bearer ${useVendorStore().vendorToken}`,
             },

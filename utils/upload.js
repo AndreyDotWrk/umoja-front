@@ -4,6 +4,7 @@ import axios from 'axios';
 
 export const upLoadPicture = async ({ event, upLoadedFiles, showProgress, profilePicture, profile_photo, errorMessage, mode }) => {
     const vendorStore = useVendorStore();
+    const baseURL = process.env.BACKEND_API_URL;
 
     if (upLoadedFiles.value.length >= 1) {
         errorMessage.value = 'Maximum number of images allowed is 1';
@@ -44,7 +45,7 @@ export const upLoadPicture = async ({ event, upLoadedFiles, showProgress, profil
         profilePicture.value = [form];
         showProgress.value = true;
 
-        const response = await axios.post('https://umoja-production-9636.up.railway.app/api/vendor/upload', formData, {
+        const response = await axios.post(baseURL + '/vendor/upload', formData, {
             headers: {
                 Authorization: `Bearer ${vendorStore.vendorToken}`
             },
@@ -110,7 +111,7 @@ export const uploadCoverImage = async({event, upLoadedFiles1, showProgress1, cov
         coverPicture.value = [form];
         showProgress1.value = true;
 
-        const response = await axios.post('https://umoja-production-9636.up.railway.app/api/vendor/upload/cover_image', formData, {
+        const response = await axios.post(baseURL + '/vendor/upload/cover_image', formData, {
             headers: {
                 Authorization: `Bearer ${vendorStore.vendorToken}`
             },

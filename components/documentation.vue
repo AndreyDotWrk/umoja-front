@@ -133,7 +133,8 @@ const typeOfUtilityBills = ref(["Electricity", "Water", "Gas", "Internet", "Tele
 const bnNumber = ref("");
 const taxIdNumber = ref("");
 const selectedUtilityBill = ref("");
-
+const config = useRuntimeConfig()
+const baseURL = config.public.backendApiUrl;
 
 
 const utility_photo = ref("")
@@ -227,7 +228,7 @@ function upLoadFile1() {
       files1.value = [...files1.value, form]
       showProgress.value = true;
 
-	  axios.post("https://umoja-production-9636.up.railway.app/api/auth/upload", formData, {
+	  axios.post(baseURL + "/auth/upload", formData, {
 			onUploadProgress: ({loaded, total}) => {
 				files1.value[files1.value.length - 1].loading = Math.floor((loaded / total) * 100);
 				if (loaded == total) {
@@ -302,7 +303,7 @@ function drop1(e) {
       files1.value = [...files1.value, form]
       showProgress.value = true;
 
-	  axios.post("https://umoja-production-9636.up.railway.app/api/auth/upload", formData, {
+	  axios.post(baseURL + "/auth/upload", formData, {
 			onUploadProgress: ({loaded, total}) => {
 				files1.value[files1.value.length - 1].loading = Math.floor((loaded / total) * 100);
 				if (loaded == total) {
@@ -375,7 +376,7 @@ function drop1(e) {
       files2.value = [...files2.value, form]
       showProgress.value = true;
 
-	  axios.post("https://umoja-production-9636.up.railway.app/api/auth/upload", formData, {
+	  axios.post(baseURL + "/auth/upload", formData, {
 			onUploadProgress: ({loaded, total}) => {
 				files2.value[files2.value.length - 1].loading = Math.floor((loaded / total) * 100);
 				if (loaded == total) {
@@ -448,7 +449,7 @@ function drop(e) {
       files2.value = [...files2.value, form]
       showProgress.value = true;
 
-	  axios.post("https://umoja-production-9636.up.railway.app/api/auth/upload", formData, {
+	  axios.post(baseURL + "/auth/upload", formData, {
 			onUploadProgress: ({loaded, total}) => {
 				files2.value[files2.value.length - 1].loading = Math.floor((loaded / total) * 100);
 				if (loaded == total) {

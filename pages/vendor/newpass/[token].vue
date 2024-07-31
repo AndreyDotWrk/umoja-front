@@ -93,8 +93,10 @@ const confirmpasswordRules = [
   v => !!v || 'Confirm Password is required',
   v => v === password.value || 'Passwords do not match'
 ]
+const config = useRuntimeConfig()
+const baseURL = config.public.backendApiUrl;
 
-  const api = vendorUseApi();
+const api = vendorUseApi();
   const route = useRoute();
   const router = useRouter();
   const loading = ref(false)
@@ -130,7 +132,7 @@ const confirmpasswordRules = [
      async function resetPassWord({token, email, password, password_confirmation}) {
       loading.value = true;
         try {
-        const response = await axios.post('https://umoja-production-9636.up.railway.app/api/auth/reset_vendor_password', {
+        const response = await axios.post(baseURL + '/auth/reset_vendor_password', {
           token,
           email,
           password,

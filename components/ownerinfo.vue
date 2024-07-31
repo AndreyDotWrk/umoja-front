@@ -107,7 +107,9 @@
   import axios from 'axios'
   
   const vendorStore = useVendorStore()
-  
+  const config = useRuntimeConfig()
+  const baseURL = config.public.backendApiUrl;
+
   const emit = defineEmits(['submit'])
   
   const results = ref()
@@ -228,7 +230,7 @@
 		files.value = [...files.value, form]
 		showProgress.value = true;
 
-		axios.post("https://umoja-production-9636.up.railway.app/api/auth/upload", formData, {
+		axios.post(baseURL + "/auth/upload", formData, {
 			onUploadProgress: ({loaded, total}) => {
 				files.value[files.value.length - 1].loading = Math.floor((loaded / total) * 100);
 				if (loaded == total) {
@@ -303,7 +305,7 @@
 		files.value = [...files.value, form]
 		showProgress.value = true;
 
-		axios.post("https://umoja-production-9636.up.railway.app/api/auth/upload", formData, {
+		axios.post(baseURL + "/auth/upload", formData, {
 			onUploadProgress: ({loaded, total}) => {
 				files.value[files.value.length - 1].loading = Math.floor((loaded / total) * 100);
 				if (loaded == total) {
